@@ -1,5 +1,3 @@
 {
-  "name": "Hyundai AC",
-  "content_in_root": false,
-  "homeassistant": "2024.1.0"
+  "name": "Hyundai AC"
 }

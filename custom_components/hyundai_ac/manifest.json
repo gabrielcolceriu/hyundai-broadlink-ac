@@ -1,16 +1,10 @@
 {
   "domain": "hyundai_ac",
   "name": "Hyundai AC",
-  "codeowners": ["@RazvanManolache"],
-  "config_flow": true,
-  "dhcp": [
-    {
-      "macaddress": "24DFA7*"
-    },
-    {
-      "hostname": "oem_tcliso*"
-    }
+  "codeowners": [
+    "@gabrielcolceriu"
   ],
+  "config_flow": true,
   "documentation": "https://github.com/gabrielcolceriu/hyundai-broadlink-ac",
   "iot_class": "local_polling",
   "issue_tracker": "https://github.com/gabrielcolceriu/hyundai-broadlink-ac/issues",
