@@ -1,18 +1,28 @@
-# Hyundai AC — local Home Assistant integration
-
-Local (cloud-free) [Home Assistant](https://www.home-assistant.io/) control for **Hyundai
-HTAC** air conditioners that use the OEM **BroadLink "DNA"** Wi‑Fi module (the one paired with
-the **Intelligent AC** mobile app). The integration talks to the module directly over the LAN
-using its per‑device AES key — no cloud, no app required at runtime.
-
-> This project pairs an existing Home Assistant integration for this BroadLink/DNA module with
-> the reverse‑engineering work needed to recover the module's **local AES key straight from the
-> device's UART**, so a Hyundai HTAC unit can be controlled entirely offline. See
-> [How the local key was recovered](#how-the-local-key-was-recovered).
+# Hyundai AC — Home Assistant Integration
 
 <p align="center">
-  <img src="custom_components/hyundai_ac/icon.png" width="96" alt="Hyundai AC">
+  <img src="custom_components/hyundai_ac/brand/icon.png" alt="Hyundai AC" width="120">
 </p>
+
+<p align="center">
+  <a href="https://github.com/hacs/integration"><img src="https://img.shields.io/badge/HACS-Custom-orange.svg?style=for-the-badge" alt="HACS: Custom"></a>
+  <img src="https://img.shields.io/badge/version-0.0.1-blue?style=for-the-badge" alt="Version">
+  <img src="https://img.shields.io/badge/HA-2024.1%2B-brightgreen?style=for-the-badge&logo=home-assistant" alt="Home Assistant">
+  <img src="https://img.shields.io/badge/license-MIT-lightgrey?style=for-the-badge" alt="License">
+</p>
+
+<p align="center">
+  Local (cloud-free) control for <strong>Hyundai HTAC</strong> air conditioners that use the OEM
+  <strong>BroadLink "DNA"</strong> Wi-Fi module (paired with the <strong>Intelligent AC</strong> app).
+  Talks to the module directly over the LAN using its per-device AES key — no cloud, no app at runtime.
+</p>
+
+---
+
+> This project pairs an existing Home Assistant integration for this BroadLink/DNA module with
+> the reverse-engineering work needed to recover the module's **local AES key straight from the
+> device's UART**, so a Hyundai HTAC unit can be controlled entirely offline. See
+> [How the local key was recovered](#how-the-local-key-was-recovered).
 
 ## Supported hardware
 
