@@ -113,6 +113,25 @@ LAN/BroadLink analysis) live under [`docs/`](docs).
 - **Command** = only the changed field (`{"pwr":1}`, `{"temp":250}`); **status** = the full JSON object.
 - Implementation: [`custom_components/hyundai_ac/protocol.py`](custom_components/hyundai_ac/protocol.py).
 
+## Staying independent (no cloud, no OTA)
+
+The integration needs **no cloud** — it talks to the module only over the LAN. But while the module
+has internet access it still reaches the vendor cloud, so the vendor could in principle push an
+**OTA firmware update** that rotates the key, changes the local protocol, or disables local control.
+The defence is simple: **block the module from the internet.**
+
+- Firewall the module (by MAC/IP) so it **cannot reach the WAN**, or place it on an isolated IoT
+  VLAN with no internet gateway. It stays fully reachable from Home Assistant on the LAN.
+- Result: **no OTA, no telemetry** — and local control keeps working unchanged.
+
+Do this while your key and local control are working, and you are independent for good.
+
+## Roadmap
+
+The plan toward a fully local, app-free onboarding flow (SmartConfig pairing, key acquisition and
+setup entirely inside Home Assistant — no TCL cloud, no *Intelligent AC* app) is tracked in
+[`ROADMAP.md`](ROADMAP.md).
+
 ## Credits
 
 - Base integration: **[RazvanManolache/home-assistant-tcl-intelligent-ac-local](https://github.com/RazvanManolache/home-assistant-tcl-intelligent-ac-local)**,
