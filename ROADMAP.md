@@ -31,6 +31,29 @@ the *Intelligent AC* app, with a **guided setup (pop-ups) inside the Home Assist
 - [ ] **Config-flow UX:** multi-step pop-ups (pairing → provisioning → auto-auth → fallback if needed →
       done), with instructions, images and per-step validation.
 
+## Feasibility findings (researched 2026-07-24)
+
+Cross-checked against jestempablo, RazvanManolache, python-broadlink #806 and the HA community:
+
+- **The lock is set by cloud/app provisioning, not by hardware.** A locked module (`LOCKED=True`,
+  auth fails `0xffff`) can be cleared by a **deep Wi-Fi-module / factory reset** (remove/re-add in
+  the app alone is NOT enough — one documented case). After a reset + **accountless local (SoftAP)
+  re-pair**, the module comes up `LOCKED=False` and returns the key over standard LAN auth `0x0065`
+  — **no UART needed**. (Empirical; validate on a real unit before relying on it.)
+- **Everything except first-time provisioning can already run fully in HA:** discovery + `0x0065`
+  auto-key + control — this is the existing `local_discovery` step in `config_flow.py`.
+- **Wi-Fi provisioning cannot run inside HA.** These modules only support **SoftAP (join-the-AP)**;
+  even `python-broadlink.setup()` is AP-mode. A headless HA server can't leave the LAN to join the
+  AC's `Air conditioner_XXXX` hotspot, so provisioning stays a **one-time laptop/phone step**.
+- **Our UART `Aes PWd` recovery appears to be novel** for these DNA `0x507A`/`0x507C` modules — no
+  other public project extracts the key that way; everyone else relies on `0x0065` LAN auth. It is
+  the fallback for units that stay locked.
+
+**Net:** for an *unlocked, already-paired* module the fully-local-from-HA flow already works. For a
+*locked* one (like this Hyundai), the only path to "unlocked, auto-key from HA" is a one-time
+factory-reset + local SoftAP re-pair on a laptop/phone — it cannot be done from HA alone, and cannot
+be done without a reset.
+
 ## Nice to have
 - [ ] DHCP auto-discovery of already-paired modules.
 - [ ] Re-key / diagnostics flow for when the key rotates after a re-pair.
