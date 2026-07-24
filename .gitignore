@@ -1,0 +1,8 @@
+# Secrets / personal
+.env
+*.key
+# Python
+__pycache__/
+*.pyc
+# OS
+.DS_Store

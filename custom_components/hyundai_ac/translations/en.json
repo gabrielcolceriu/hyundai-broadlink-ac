@@ -1,0 +1,171 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Hyundai AC",
+        "description": "Choose how to add already-paired Hyundai AC devices. Local discovery is recommended when Home Assistant can reach the ACs on your LAN.",
+        "data": {
+          "setup_method": "Setup method"
+        }
+      },
+      "cloud": {
+        "title": "Cloud-assisted setup",
+        "description": "Log in once to fetch device MAC addresses and keys from Intelligent AC. The password is not stored and runtime control remains local.",
+        "data": {
+          "username": "Email or phone",
+          "password": "Password",
+          "region": "Region"
+        }
+      },
+      "local_discovery": {
+        "title": "Local discovery",
+        "description": "Discover already-paired Hyundai AC devices on the local network and fetch their local keys without using an Intelligent AC account. The options below are optional; leave them unchanged unless automatic discovery misses a device.",
+        "data": {
+          "seed_hosts": "Known IP addresses (optional, comma-separated)",
+          "scan_subnet": "Scan local subnet"
+        },
+        "data_description": {
+          "seed_hosts": "Enter one or more device IP addresses, for example 192.168.1.50, 192.168.1.51. Use this if automatic discovery does not find all devices.",
+          "scan_subnet": "Try each address on Home Assistant's local /24 network. This is useful when broadcast discovery is blocked or incomplete."
+        }
+      },
+      "select": {
+        "title": "Select devices",
+        "description": "Choose which Intelligent AC devices to add to Home Assistant.",
+        "data": {
+          "selection": "Devices to add"
+        }
+      },
+      "select_local": {
+        "title": "Select LAN devices",
+        "description": "Choose which locally discovered devices to add to Home Assistant. Local discovery uses the device name reported by the Wi-Fi module, which may differ from the friendly name in the mobile app.",
+        "data": {
+          "selection": "Devices to add"
+        }
+      },
+      "dhcp_confirm": {
+        "title": "Discovered Hyundai AC",
+        "description": "Home Assistant discovered {name} at {host} ({mac}). Submit to add it using local LAN control."
+      },
+      "manual": {
+        "title": "Manual setup",
+        "description": "Add a Hyundai AC device by entering known local LAN details.",
+        "data": {
+          "name": "Name",
+          "host": "Host",
+          "mac": "MAC address",
+          "key": "Device key"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Could not connect to the device with these details.",
+      "cloud_error": "Could not log in or fetch devices from Intelligent AC. Check the Home Assistant log for the exact cloud response.",
+      "invalid_auth": "The Intelligent AC login service rejected these credentials.",
+      "too_many_attempts": "The Intelligent AC login service temporarily blocked login attempts. Wait a while and try again.",
+      "discovery_error": "LAN discovery failed. Check the Home Assistant log for details.",
+      "host_not_found": "The device was found in the account, but its LAN host could not be resolved.",
+      "no_devices": "No supported Hyundai AC devices were found in this account.",
+      "no_lan_devices": "No supported Hyundai AC devices could be discovered and authenticated on the LAN.",
+      "no_devices_selected": "Select at least one device.",
+      "already_configured": "This device is already configured.",
+      "all_devices_configured": "All discovered devices are already configured.",
+      "locked_device": "A Hyundai AC was discovered, but it reports LOCKED=True and blocked local authentication. Disable any BroadLink-style Lock device setting, or perform a deeper Wi-Fi module/factory reset and try again."
+    },
+    "abort": {
+      "already_configured": "This device is already configured.",
+      "not_supported": "No supported Hyundai AC device could be authenticated at this address.",
+      "locked_device": "The discovered Hyundai AC reports LOCKED=True and blocks local authentication."
+    }
+  },
+  "entity": {
+    "climate": {
+      "hyundai_ac": {
+        "state_attributes": {
+          "fan_mode": {
+            "state": {
+              "auto": "Auto",
+              "low": "Low",
+              "mid low": "Mid-low",
+              "medium": "Medium",
+              "mid high": "Mid-high",
+              "high": "High"
+            }
+          },
+          "swing_mode": {
+            "state": {
+              "off": "Off",
+              "vertical": "Vertical"
+            }
+          }
+        }
+      }
+    },
+    "switch": {
+      "clean": {
+        "name": "Evaporator clean"
+      },
+      "turbo": {
+        "name": "Turbo"
+      },
+      "eco": {
+        "name": "Eco"
+      },
+      "quiet": {
+        "name": "Quiet"
+      },
+      "display": {
+        "name": "Display"
+      },
+      "buzzer": {
+        "name": "Buzzer"
+      },
+      "anti_mildew": {
+        "name": "Anti-mildew"
+      },
+      "health": {
+        "name": "Health"
+      },
+      "eight_degree_heat": {
+        "name": "Frost protection"
+      }
+    },
+    "sensor": {
+      "outdoor_temperature": {
+        "name": "Outdoor temperature"
+      },
+      "coil_temperature": {
+        "name": "Coil temperature"
+      },
+      "vent_temperature": {
+        "name": "Vent temperature"
+      },
+      "error_code_1": {
+        "name": "Error code 1"
+      },
+      "error_code_2": {
+        "name": "Error code 2"
+      }
+    },
+    "binary_sensor": {
+      "filter_dirty": {
+        "name": "Filter dirty"
+      },
+      "clean_check": {
+        "name": "Clean check"
+      }
+    },
+    "select": {
+      "sleep": {
+        "name": "Sleep",
+        "state": {
+          "off": "Off",
+          "normal": "Normal",
+          "senior": "Senior",
+          "child": "Child",
+          "custom": "Custom"
+        }
+      }
+    }
+  }
+}

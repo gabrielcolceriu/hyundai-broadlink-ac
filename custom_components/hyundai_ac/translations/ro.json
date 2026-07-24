@@ -1,0 +1,92 @@
+{
+  "entity": {
+    "climate": {
+      "hyundai_ac": {
+        "state_attributes": {
+          "fan_mode": {
+            "state": {
+              "auto": "Automat",
+              "low": "Minim",
+              "mid low": "Mic-mediu",
+              "medium": "Mediu",
+              "mid high": "Mediu-mare",
+              "high": "Maxim"
+            }
+          },
+          "swing_mode": {
+            "state": {
+              "off": "Oprit",
+              "vertical": "Vertical"
+            }
+          }
+        }
+      }
+    },
+    "switch": {
+      "clean": {
+        "name": "Curățare evaporator"
+      },
+      "turbo": {
+        "name": "Turbo"
+      },
+      "eco": {
+        "name": "Eco"
+      },
+      "quiet": {
+        "name": "Silențios"
+      },
+      "display": {
+        "name": "Afișaj"
+      },
+      "buzzer": {
+        "name": "Sonor"
+      },
+      "anti_mildew": {
+        "name": "Anti-mucegai"
+      },
+      "health": {
+        "name": "Health"
+      },
+      "eight_degree_heat": {
+        "name": "Protecție îngheț"
+      }
+    },
+    "sensor": {
+      "outdoor_temperature": {
+        "name": "Temperatură exterioară"
+      },
+      "coil_temperature": {
+        "name": "Temperatură serpentină"
+      },
+      "vent_temperature": {
+        "name": "Temperatură refulare"
+      },
+      "error_code_1": {
+        "name": "Cod eroare 1"
+      },
+      "error_code_2": {
+        "name": "Cod eroare 2"
+      }
+    },
+    "binary_sensor": {
+      "filter_dirty": {
+        "name": "Filtru murdar"
+      },
+      "clean_check": {
+        "name": "Verificare curățare"
+      }
+    },
+    "select": {
+      "sleep": {
+        "name": "Sleep",
+        "state": {
+          "off": "Oprit",
+          "normal": "Normal",
+          "senior": "Senior",
+          "child": "Copil",
+          "custom": "Personalizat"
+        }
+      }
+    }
+  }
+}

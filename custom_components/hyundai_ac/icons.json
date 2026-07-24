@@ -1,0 +1,28 @@
+{
+  "entity": {
+    "climate": {
+      "hyundai_ac": {
+        "state_attributes": {
+          "fan_mode": {
+            "default": "mdi:fan",
+            "state": {
+              "auto": "mdi:fan-auto",
+              "low": "mdi:fan-speed-1",
+              "mid low": "mdi:fan-chevron-down",
+              "medium": "mdi:fan-speed-2",
+              "mid high": "mdi:fan-chevron-up",
+              "high": "mdi:fan-speed-3"
+            }
+          },
+          "swing_mode": {
+            "default": "mdi:arrow-oscillating",
+            "state": {
+              "off": "mdi:arrow-oscillating-off",
+              "vertical": "mdi:arrow-up-down"
+            }
+          }
+        }
+      }
+    }
+  }
+}
