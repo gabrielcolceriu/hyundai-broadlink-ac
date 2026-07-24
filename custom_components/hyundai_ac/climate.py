@@ -19,8 +19,8 @@ from homeassistant.helpers.update_coordinator import CoordinatorEntity
 from .const import CONF_DEVICES, CONF_KEY, CONF_MAC, DOMAIN
 from .coordinator import HyundaiAcCoordinator, HyundaiAcRuntime, runtime_from_config
 
-FAN_MID_LOW = "mid low"
-FAN_MID_HIGH = "mid high"
+FAN_MID_LOW = "mid_low"
+FAN_MID_HIGH = "mid_high"
 SWING_OFF = "off"
 SWING_VERTICAL = "vertical"
 SWING_HORIZONTAL = "horizontal"

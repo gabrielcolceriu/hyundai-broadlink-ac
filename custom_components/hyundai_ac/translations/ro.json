@@ -7,9 +7,9 @@
             "state": {
               "auto": "Automat",
               "low": "Minim",
-              "mid low": "Mic-mediu",
+              "mid_low": "Mic-mediu",
               "medium": "Mediu",
-              "mid high": "Mediu-mare",
+              "mid_high": "Mediu-mare",
               "high": "Maxim"
             }
           },

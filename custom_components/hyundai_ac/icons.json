@@ -8,9 +8,9 @@
             "state": {
               "auto": "mdi:fan-auto",
               "low": "mdi:fan-speed-1",
-              "mid low": "mdi:fan-chevron-down",
+              "mid_low": "mdi:fan-chevron-down",
               "medium": "mdi:fan-speed-2",
-              "mid high": "mdi:fan-chevron-up",
+              "mid_high": "mdi:fan-chevron-up",
               "high": "mdi:fan-speed-3"
             }
           },
