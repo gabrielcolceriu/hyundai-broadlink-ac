@@ -126,6 +126,55 @@ The defence is simple: **block the module from the internet.**
 
 Do this while your key and local control are working, and you are independent for good.
 
+Tested example on MikroTik RouterOS — matching on **MAC** rather than IP, so the rule survives an
+address change:
+
+```
+/ip firewall filter add chain=forward action=drop \
+    src-mac-address=AA:BB:CC:DD:EE:FF out-interface=<your-wan-interface> \
+    comment="AC module - no internet (anti-OTA)"
+```
+
+Beware of one trap: **moving the module to an IoT VLAN by re-pairing it costs you the key** (see
+below). If you want it on another VLAN, override the VLAN for that client on the AP instead, so the
+module keeps its saved Wi-Fi credentials and never re-pairs.
+
+## Changing your Wi-Fi password (without losing the key)
+
+The local key is **stable while the module stays paired** — it survives reboots — but it is
+**regenerated on every re-pairing / cloud activation**. That makes an ordinary Wi-Fi password change
+surprisingly expensive: the module can no longer associate, falls back to SmartConfig, and the
+obvious fix — pairing it again — rotates the key, so you have to recover it over UART all over again.
+
+There is a way out that keeps the key: give **that one device** its old password back, while the
+network keeps the new one for everybody else. Most APs support a per-client PSK for exactly this.
+
+MikroTik CAPsMAN (v1):
+
+```
+/caps-man access-list add place-before=0 action=accept \
+    mac-address=AA:BB:CC:DD:EE:FF private-passphrase="<old-password>" \
+    comment="AC module - old PSK, avoids re-pairing"
+```
+
+MikroTik RouterOS 7 (`/interface/wifi`):
+
+```
+/interface/wifi/access-list add mac-address=AA:BB:CC:DD:EE:FF passphrase="<old-password>"
+```
+
+The module reconnects on its own (power-cycle it if it has already dropped into SmartConfig), the
+key is untouched, and Home Assistant notices nothing — entity IDs are derived from the MAC, so
+history and automations survive.
+
+Two things worth knowing:
+
+- RouterOS **hides** `private-passphrase` in `print` output. Verify it was stored with
+  `:put [:len [/caps-man/access-list/get 0 private-passphrase]]`.
+- **Remove the rule if you ever do re-provision that device with the new password.** The per-client
+  PSK overrides the network password, so the AP will keep demanding the old one and the WPA 4-way
+  handshake will fail — with no obvious clue as to why.
+
 ## Roadmap
 
 The plan toward a fully local, app-free onboarding flow (SmartConfig pairing, key acquisition and
