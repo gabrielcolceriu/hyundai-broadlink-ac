@@ -67,4 +67,4 @@ locked Hyundai `0x507A` modules where LAN auth is refused.
 ## Done
 - [x] Local LAN control with the UART-recovered AES key.
 - [x] Full entity set (climate + switches + select + sensors + binary sensors), EN/RO labels & icons.
-- [x] Packaged as a HACS custom repository (v0.0.1).
+- [x] Packaged as a HACS custom repository (v0.0.1), then **accepted into the HACS default list** (hacs/default#9470) — installable without adding a custom repository.
